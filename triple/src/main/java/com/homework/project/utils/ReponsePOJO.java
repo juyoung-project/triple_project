@@ -16,8 +16,8 @@ public class ReponsePOJO {
 	
 	public ReponsePOJO(Object data) {this.appData = data;}
 	
-	public static ReponsePOJO success( Object data ) {
-		return buildMessage(200, null, data);
+	public static ReponsePOJO success( Object data, String returnMessage ) {
+		return buildMessage(200, returnMessage, data);
 	}
 	
 	public static ReponsePOJO error( Object data, String returnMessage ) {
