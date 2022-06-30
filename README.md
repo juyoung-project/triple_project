@@ -60,3 +60,34 @@
       KEY `place_id_idx` (`place_id`),
       CONSTRAINT `member_id` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb3;
+    
+    
+# 3. TESTCASE
+    - http://localhost:8080/api/create-member ( 제일 처음 테스트용 멤버 생성 )
+    - http://localhost:8080/api/get-member ( 생성된 멤버들의 아이디 확인 및 점수 확인 가능 )
+    - http://localhost:8080/api/create-event-review ( 리뷰 생성 )
+      테스트 JSON
+      {
+            "action" : "ADD",
+            "content" : "TEST REVIEW",
+            "user_id" : "1",
+            "placeId" : "wa654-321as",
+            "attachedPhotoIds" : ["111", "222"]
+      }
+    - http://localhost:8080/api/get-member ( 해당유저 점수 확인 가능 )
+    - http://localhost:8080/api/update-event-review ( 리뷰 업데이트 )
+      테스트 JSON 
+      {
+            "reviewId" : "ec2b43e9-df77-4ac8-b3ff-b0dfb57f6365",   ( db에서 조회해온 값을 넣어주어여 한다. )
+            "content" : "32222222221",
+            "attachedPhotoIds" : ["11"]
+      }
+    - http://localhost:8080/api/get-member ( 업데이트된 리뷰에 대한 점수 확인 )
+    - http://localhost:8080/api/delete-event-review ( 리뷰 삭제 )
+      테스트 JSON 
+      {
+            "reviewId" : "ec2b43e9-df77-4ac8-b3ff-b0dfb57f6365"   ( db에서 조회해온 값을 넣어주어여 한다. )
+      }
+      
+    - http://localhost:8080/api/get-member ( 삭제된 리뷰에 대한 점수 확인 )
+    - http://localhost:8080/api/get-point-history ( history 조회 )
