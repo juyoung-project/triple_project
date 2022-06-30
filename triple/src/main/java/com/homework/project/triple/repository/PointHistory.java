@@ -12,7 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -28,6 +30,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Builder
+@DynamicInsert
 @Table( name="point_history" )
 public class PointHistory implements Serializable{/**
 	 * 
@@ -39,11 +42,11 @@ public class PointHistory implements Serializable{/**
 	@Column( name="id" )
 	private Long id;
 	
-	@Column( name="current_point" )
-	private int currentPoint;
+	@Column( name="points_earned" )
+	private int pointsEarned;
 	
-	@Column( name="type" )
-	private String type;
+	@Column( name="action" )
+	private String action;
 	
 	@Column( name="is_deleted" )
 	private Boolean isDeleted;

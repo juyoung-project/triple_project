@@ -25,6 +25,9 @@ public class EventService {
 	@Autowired
 	private MemberRepository memberRepository;
 	
+	@Autowired
+	private PointHistoryService pointHistoryService;
+	
 	@Transactional
 	public void insertEventReview( HashMap<String, Object> param ) {
 		
@@ -40,6 +43,8 @@ public class EventService {
 		ArrayList<String> photoIds = (ArrayList<String>) param.get("attachedPhotoIds");
 		Member member = memberRepository.findById(userId).get();
 		
+		int point = pointCalc(action, content, placeId, member, null, photoIds);
+		
 		Event event = Event.builder().type(type)
 									 .action(action)
 									 .reviewId(reviewId)
@@ -51,6 +56,8 @@ public class EventService {
 									 .build();
 		
 		eventRepository.save(event);
+		
+		afterSaveHistory(point, action, member, event);
 		
 	}
 	
@@ -65,11 +72,42 @@ public class EventService {
 		
 		Event event = eventRepository.findByReviewId(reviewId);
 		
-		event.setPoint(pointCalc(action, content, null, null, event, photoIds));
+		int point = pointCalc(action, content, null, null, event, photoIds);
+		
+		event.setPoint( point );
 		event.setContent(content);
 		event.setAttachedPhotoIds(StringUtils.arrayToCommaString(photoIds));
 		
 		eventRepository.save(event);
+		
+		afterSaveHistory(point, action, event.getMember(), event);
+		
+	}
+	
+	@Transactional
+	public void deleteEventReview( HashMap<String, Object> param ) {
+		
+		String reviewId = StringUtils.objectToString(param.get("reviewId"));
+		Event event = eventRepository.findByReviewId(reviewId);
+		String action = CodeCons.DELETE;
+		
+		event.setIsDeleted(true);
+		event.setPoint(0);
+		eventRepository.save(event);
+		
+		afterSaveHistory(0, action, event.getMember(), event);
+		
+	}
+	
+	public int getMemberPoint(Long memberId) {
+		
+		return eventRepository.totalPoint(memberId);
+		
+	}
+	
+	public void afterSaveHistory( int point, String action, Member member, Event event ) {
+		
+		pointHistoryService.savePointHistory(point, action, member, event);
 		
 	}
 	
@@ -82,7 +120,7 @@ public class EventService {
 		
 			case CodeCons.ADD:
 				
-				int placeCount = eventRepository.countByPlaceId(placeId);
+				int placeCount = eventRepository.countByPlaceIdAndIsDeleted(placeId, false);
 				
 				int visitPlaceCount = eventRepository.countByMemberIdAndPlaceId(member.getId(), placeId);
 				

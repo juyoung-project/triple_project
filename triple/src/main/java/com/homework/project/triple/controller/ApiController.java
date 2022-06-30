@@ -56,4 +56,12 @@ public class ApiController {
 		return ReponsePOJO.success(null, "리뷰 수정이 완료되었습니다");
 		
 	}
+	
+	@PostMapping( value="/delete-event-review" )
+	public ReponsePOJO deleteEventReview(@RequestBody HashMap<String, Object> param) {
+		
+		eventService.deleteEventReview(param);
+		return ReponsePOJO.success(null, "리뷰 삭제가 완료되었습니다");
+		
+	}
 }

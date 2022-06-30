@@ -15,7 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
@@ -32,6 +34,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Builder
+@DynamicInsert
 @Table( name="events ")
 public class Event implements Serializable{/**
 	 * 
@@ -73,6 +76,10 @@ public class Event implements Serializable{/**
 	@JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd", timezone="Asia/Seoul" )
 	@Column( name="update_time" )
 	private Date updateTime;
+	
+	@Column( name="is_deleted" )
+	private Boolean isDeleted;
+	
 	
 	
 	// FK key관련

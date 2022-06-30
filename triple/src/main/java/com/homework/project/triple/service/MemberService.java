@@ -18,6 +18,9 @@ public class MemberService {
 	@Autowired
 	private MemberRepository memberRepository;
 	
+	@Autowired
+	private EventService eventService;
+	
 	public void insertTestMember() {
 		
 		List<String> memberList = new ArrayList<String>();
@@ -46,16 +49,15 @@ public class MemberService {
 			HashMap<String, String> tempMap = new HashMap<>();
 			tempMap.put("id", String.valueOf( member.getId()));
 			tempMap.put("name", member.getName());
+			tempMap.put("totalPoint", StringUtils.objectToString( eventService.getMemberPoint(member.getId())) );
 			rtnList.add(tempMap);
 			
 		}
-		
 		return rtnList;
 		
 	}
 	
 
-	
 	
 	public void fakeLogic() {
 		
