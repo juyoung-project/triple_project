@@ -1,4 +1,7 @@
 # triple_project
+    사용기술 스택
+    - spring boot, jpa, mysql, java / postman을 통한 테스트
+    
 # 1. Project Setting 방법
     - git clone하여 ide에 코드를 내려받는다.
     - project를 import한다.
