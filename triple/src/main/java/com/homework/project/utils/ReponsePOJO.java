@@ -9,6 +9,11 @@ import lombok.Setter;
 @Setter
 public class ReponsePOJO {
 	
+	/**
+	 * Return 되는 값을 통일 시키기위한 POJO Class
+	 * 
+	 * */
+	
 	private int returnCode = 0;
 	private String returnMessage = "success";
 	

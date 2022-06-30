@@ -25,6 +25,7 @@ public class ApiController {
 	@Autowired
 	private EventService eventService;
 	
+	// 모든 유저들의 정보를 얻어온다
 	@GetMapping( value = "/get-member")
 	public ReponsePOJO getAllMeber() {
 		
@@ -32,6 +33,7 @@ public class ApiController {
 		
 	}
 	
+	// 테스트용 멤버데이터 생성	
 	@GetMapping( value="/create-member")
 	public ReponsePOJO createMember() {
 		
@@ -40,6 +42,7 @@ public class ApiController {
 		
 	}
 	
+	// 리뷰등록 이벤트	
 	@PostMapping( value="/create-event-review" )
 	public ReponsePOJO createEventReview(@RequestBody HashMap<String, Object> param) {
 		
@@ -48,7 +51,7 @@ public class ApiController {
 		
 	}
 	
-	
+	// 리뷰수정 이벤트	
 	@PostMapping( value="/update-event-review" )
 	public ReponsePOJO updateEventReview(@RequestBody HashMap<String, Object> param) {
 		
@@ -57,6 +60,7 @@ public class ApiController {
 		
 	}
 	
+	// 리뷰삭제	
 	@PostMapping( value="/delete-event-review" )
 	public ReponsePOJO deleteEventReview(@RequestBody HashMap<String, Object> param) {
 		

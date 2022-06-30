@@ -19,6 +19,12 @@ import com.homework.project.utils.Utils;
 @Service
 public class EventService {
 	
+	/**
+	 * 
+	 * 리뷰에 관한 서비스 로직 
+	 * 
+	 * */
+	
 	@Autowired
 	private EventRepository eventRepository;
 	

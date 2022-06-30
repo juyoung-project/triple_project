@@ -13,6 +13,12 @@ import com.homework.project.triple.repository.PointHistoryRepository;
 @Service
 public class PointHistoryService {
 	
+	/**
+	 * 
+	 * 히스토리 관한 서비스 로직 
+	 * 
+	 * */
+	
 	@Autowired
 	private PointHistoryRepository pointHistoryRepository;
 	

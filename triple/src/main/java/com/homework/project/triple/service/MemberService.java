@@ -15,6 +15,12 @@ import com.homework.project.utils.StringUtils;
 @Service
 public class MemberService {
 	
+	/**
+	 * 
+	 * 멤버에 관한 서비스 로직 
+	 * 
+	 * */
+	
 	@Autowired
 	private MemberRepository memberRepository;
 	
