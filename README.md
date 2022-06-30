@@ -15,7 +15,7 @@
 
   -member table
   
-    CREATE TABLE `member` (
+    CREATE TABLE `triple`.`member` (
     `id` int NOT NULL AUTO_INCREMENT,
     `name` varchar(200) NOT NULL,
     PRIMARY KEY (`id`)
@@ -23,7 +23,7 @@
     
   -point_history table   
   
-    CREATE TABLE `point_history` (
+    CREATE TABLE `triple`.`point_history` (
       `id` int NOT NULL AUTO_INCREMENT,
       `member_id` int NOT NULL,
       `event_id` int NOT NULL,
@@ -41,7 +41,7 @@
     
    -events table
    
-      CREATE TABLE `events` (
+      CREATE TABLE `triple`.`events` (
       `id` int NOT NULL AUTO_INCREMENT,
       `action` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL,
       `review_id` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL,
