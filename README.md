@@ -24,25 +24,8 @@
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
     
-  -point_history table   
   
-    CREATE TABLE `triple`.`point_history` (
-      `id` int NOT NULL AUTO_INCREMENT,
-      `member_id` int NOT NULL,
-      `event_id` int NOT NULL,
-      `points_earned` int NOT NULL,
-      `action` varchar(45) NOT NULL,
-      `is_deleted` tinyint NOT NULL DEFAULT '0',
-      `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      PRIMARY KEY (`id`),
-      KEY `member_id_idx` (`member_id`),
-      KEY `event_id_idx` (`event_id`),
-      CONSTRAINT `event_id` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
-      CONSTRAINT `history_member_id` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
-    
-    
-   -events table
+  -events table
    
       CREATE TABLE `triple`.`events` (
       `id` int NOT NULL AUTO_INCREMENT,
@@ -63,6 +46,27 @@
       KEY `place_id_idx` (`place_id`),
       CONSTRAINT `member_id` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb3;
+  
+    
+  -point_history table   
+  
+    CREATE TABLE `triple`.`point_history` (
+      `id` int NOT NULL AUTO_INCREMENT,
+      `member_id` int NOT NULL,
+      `event_id` int NOT NULL,
+      `points_earned` int NOT NULL,
+      `action` varchar(45) NOT NULL,
+      `is_deleted` tinyint NOT NULL DEFAULT '0',
+      `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY (`id`),
+      KEY `member_id_idx` (`member_id`),
+      KEY `event_id_idx` (`event_id`),
+      CONSTRAINT `event_id` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
+      CONSTRAINT `history_member_id` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
+    
+    
+   
     
     
 # 3. TESTCASE
