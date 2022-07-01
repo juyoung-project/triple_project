@@ -1,5 +1,6 @@
 # triple_project
     사용기술 스택
+    - java 1.8 version
     - spring boot, jpa, mysql, java / postman을 통한 테스트
     
 # 1. Project Setting 방법
